@@ -21,6 +21,7 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
   private lastTouchOrigin = { x: 0, y: 0 };
   private cardWidth: number;
   private isAnimating = false;
+  private animationDuration = 0.2;
   public state = {
     swipeState: 0
   };
@@ -78,6 +79,23 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
     requestAnimationFrame(this.onFrame.bind(this));
   }
 
+  onLikeButtonPress () {
+    this.setState({
+      swipeState: 1
+    });
+    setTimeout(_ => {
+      this.props.onLike(this.props.profile.id);
+    }, this.animationDuration * 1000);
+  }
+
+  onRejectButtonPress () {
+    this.setState({
+      swipeState: -1
+    });
+    setTimeout(_ => {
+      this.props.onReject(this.props.profile.id);
+    }, this.animationDuration * 1000);
+  }
 
   render () {
     const classes = classNames({
@@ -85,15 +103,16 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
       [this.props.className]: !!this.props.className
     });
 
+    const transitionString = `transform ${this.animationDuration}s linear, opacity ${this.animationDuration}s linear`
     const style = this.state.swipeState === 0 ? {
       // Set default opacity with transition
       opacity: 1,
-      transition: 'transform 0.2s linear, opacity 0.2s linear'
+      transition: transitionString
     } : {
       // Disable transitions and use dynamic opacity and transform
       opacity: (1 - Math.abs(this.state.swipeState)),
       transform: `translateX(${this.cardWidth * this.state.swipeState}px) rotate(${5 * this.state.swipeState}deg)`,
-      transition: 'none'
+      transition: this.isAnimating ? 'none' : transitionString
     };
 
     return (
@@ -109,8 +128,8 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
           </div>
         </div>
         <div className="profile-card__footer">
-          <Button className="profile-card__footer__button" color="negative" variant="filled" text="No" onClick={ this.props.onReject.bind(this, [this.props.profile.id]) } />
-          <Button className="profile-card__footer__button" color="positive" variant="filled" text="Yes" onClick={ this.props.onLike.bind(this, [this.props.profile.id]) } />
+          <Button className="profile-card__footer__button" color="negative" variant="filled" text="No" onClick={this.onRejectButtonPress.bind(this) } />
+          <Button className="profile-card__footer__button" color="positive" variant="filled" text="Yes" onClick={ this.onLikeButtonPress.bind(this) } />
         </div>
       </article>
     );
