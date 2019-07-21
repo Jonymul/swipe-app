@@ -1,0 +1,28 @@
+.button {
+  appearance: none;
+  border: none;
+  border-radius: 10rem; // pill shape
+  padding: 1rem 1rem;
+
+  .button__text {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+
+  &--negative {
+    color: #F46666;
+  }
+
+  &--positive {
+    color: #66D897;
+  }
+
+  &--filled {
+    background: white;
+    box-shadow: 0 4px 12px rgba(black, 0.1);
+
+    .button__text {
+      //color: white;
+    }
+  }
+}
