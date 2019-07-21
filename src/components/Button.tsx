@@ -18,10 +18,6 @@ export class Button extends React.Component<ButtonProps, {}> {
     variant: 'filled'
   }
 
-  constructor (props: ButtonProps) {
-    super(props);
-  }
-
   render () {
     const classes = classNames({
       'button': true,

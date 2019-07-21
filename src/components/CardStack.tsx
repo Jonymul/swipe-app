@@ -11,16 +11,12 @@ export interface CardStackState {
 }
 
 export class CardStack extends React.Component<CardStackProps, CardStackState> {
-  profileService: ProfileService;
-
-  constructor (props: CardStackProps) {
-    super(props);
-    this.profileService = new ProfileService();
-
-    this.state = {
-      profileQueue: []
-    };
-
+  private profileService = new ProfileService();
+  public state: CardStackState = {
+    profileQueue: []
+  };
+  
+  componentDidMount () {
     this.replenishProfileQueue();
   }
 
