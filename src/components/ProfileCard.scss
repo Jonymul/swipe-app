@@ -10,6 +10,7 @@ $padding: 0.5rem;
   flex-direction: column;
   max-width: 360px;
   padding: $padding;
+  will-change: transform, opacity;
 
   &__photo {
     background-size: cover;
