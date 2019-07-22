@@ -12,6 +12,10 @@ $padding: 0.5rem;
   padding: $padding;
   will-change: transform, opacity;
 
+  &:focus {
+    outline: none;
+  }
+
   &__photo {
     background-size: cover;
     border-radius: $radius - $padding;

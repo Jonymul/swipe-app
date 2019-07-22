@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import './Button.scss';
 
-
 export interface ButtonProps {
   className?: string;
   color?: string;

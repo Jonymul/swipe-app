@@ -14,6 +14,7 @@ export interface ProfileCardProps {
   onReject: (id: string) => void;
   onLike: (id: string) => void;
   profile: Profile;
+  active: boolean;
 }
 export interface ProfileCardState {
   swipeState: number
@@ -29,6 +30,13 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
   public state = {
     swipeState: 0
   };
+
+  componentWillReceiveProps (newProps: ProfileCardProps, oldProps: ProfileCardProps) {
+    if (newProps.active !== oldProps.active) {
+      // If becomes active, focus.
+      this.cardRoot.current.focus();
+    }
+  }
 
   componentDidMount () {
     this.cardWidth = this.cardRoot.current.clientWidth;
@@ -120,7 +128,7 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
     };
 
     return (
-      <article className={classes} ref={this.cardRoot} style={style}>
+      <article tabIndex={this.props.active ? 0 : -1} aria-hidden={!this.props.active} className={classes} ref={this.cardRoot} style={style}>
         <div className="profile-card__photo" style={{ backgroundImage: `url("${ this.props.profile.photoURL }")` }} />
         <div className="profile-card__body profile">
           <div className="profile__headline">
