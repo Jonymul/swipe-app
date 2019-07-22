@@ -128,7 +128,7 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
             <p className="profile__headline__age">{ this.props.profile.age }歳</p>
           </div>
           <div className="profile__summary">
-            <p>Short summary</p>
+            <p>{ this.props.profile.profile }</p>
           </div>
         </div>
         <div className="profile-card__footer">
