@@ -6,6 +6,16 @@ Profiles are displayed one at a time where they can be 'liked' or 'rejected' by 
 
 Currently, detailled profiles are not available but I may add this soon.
 
+Photos from [Unsplash](https://unsplash.com/).
+
+## Running the project
+The project is bundled with `webpack-dev-server` which will reload the page on code changes.
+- Run `npm install`
+- Run `npx webpack-dev-server`
+- Visit [`http://localhost:9000`](http://localhost:9000)
+- To Test mobile features, use Chrome device emulation.
+
+The project can also be built to the `/dist` directory by running `npx webpack`.
 
 ## Overview
 The `CardStack` component loads profiles from the `ProfileService` where they are displayed as `ProfileCard` components. The `CardStack` component is responsible for proactively enqueuing profiles when they run low, and handling which profiles are 'liked' or 'rejected'.
