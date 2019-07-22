@@ -2,11 +2,15 @@
   appearance: none;
   border: none;
   border-radius: 10rem; // pill shape
-  padding: 1rem 1rem;
+  padding: 1rem;
 
   .button__text {
     font-size: 1.2rem;
     text-transform: uppercase;
+  }
+
+  .button__icon {
+    line-height: 0;
   }
 
   &--negative {
@@ -21,8 +25,8 @@
     background: white;
     box-shadow: 0 4px 12px rgba(black, 0.1);
 
-    .button__text {
-      //color: white;
+    .button__icon {
+      fill: currentColor;
     }
   }
 }

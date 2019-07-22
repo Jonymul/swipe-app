@@ -1,5 +1,9 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
+// @ts-ignore
+import PawIcon from 'react-material-icon-svg/dist/Paw';
+// @ts-ignore
+import CloseIcon from 'react-material-icon-svg/dist/Close';
 import { Profile } from '../services/ProfileService';
 import { Button } from './Button';
 import './ProfileCard.scss';
@@ -27,9 +31,10 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
   };
 
   componentDidMount () {
-    this.cardRoot.current.addEventListener('touchstart', this.onTouchStart.bind(this));
-    this.cardRoot.current.addEventListener('touchmove', this.onTouchMove.bind(this));
-    this.cardRoot.current.addEventListener('touchend', this.onTouchEnd.bind(this));
+    this.cardWidth = this.cardRoot.current.clientWidth;
+    this.cardRoot.current.addEventListener('touchstart', this.onTouchStart.bind(this), { passive: true });
+    this.cardRoot.current.addEventListener('touchmove', this.onTouchMove.bind(this), { passive: true });
+    this.cardRoot.current.addEventListener('touchend', this.onTouchEnd.bind(this), { passive: true });
   }
 
   componentWillUnmount () {
@@ -41,7 +46,6 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
 
   onTouchStart (event: TouchEvent) {
     // Set the touch state
-    this.cardWidth = this.cardRoot.current.clientWidth;
     this.touchOrigin.x = event.touches[0].clientX;
     this.touchOrigin.y = event.touches[0].clientY;
     this.lastTouchOrigin.x = event.touches[0].clientX;
@@ -128,8 +132,8 @@ export class ProfileCard extends React.Component<ProfileCardProps, ProfileCardSt
           </div>
         </div>
         <div className="profile-card__footer">
-          <Button className="profile-card__footer__button" color="negative" variant="filled" text="No" onClick={this.onRejectButtonPress.bind(this) } />
-          <Button className="profile-card__footer__button" color="positive" variant="filled" text="Yes" onClick={ this.onLikeButtonPress.bind(this) } />
+          <Button className="profile-card__footer__button" color="negative" title="スキップ" variant="filled" icon={<CloseIcon />} onClick={this.onRejectButtonPress.bind(this) } />
+          <Button className="profile-card__footer__button" color="positive" title="いいね" variant="filled" icon={<PawIcon />} onClick={ this.onLikeButtonPress.bind(this) } />
         </div>
       </article>
     );

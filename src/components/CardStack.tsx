@@ -1,9 +1,11 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
 import { ProfileService, Profile } from '../services/ProfileService';
 import { ProfileCard } from './ProfileCard';
 import './CardStack.scss';
 
 export interface CardStackProps {
+  className?: string;
 }
 
 export interface CardStackState {
@@ -54,8 +56,13 @@ export class CardStack extends React.Component<CardStackProps, CardStackState> {
   }
 
   render () {
+    const classes = classNames({
+      'card-stack': true,
+      [this.props.className]: !!this.props.className
+    });
+
     return (
-      <div className="card-stack">
+      <div className={classes}>
         { this.state.profileQueue.slice(0,2).map((profile, index) => <ProfileCard key={`profilecard-${ profile.id }`} className={`card-stack__card card-stack__card--index${index}`} profile={profile} onReject={ this.onCardReject.bind(this, [profile.id]) } onLike={ this.onCardLike.bind(this, [profile.id]) } />) }
       </div>
     );

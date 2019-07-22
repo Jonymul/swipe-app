@@ -1,0 +1,15 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__logo {
+    margin: 0.5rem 0;
+  }
+
+  &__stack {
+    margin: 1rem 0;
+    height: 29rem;
+  }
+}

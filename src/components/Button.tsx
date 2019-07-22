@@ -10,6 +10,7 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   text?: string;
   variant?: string;
+  title?: string;
 }
 
 export class Button extends React.Component<ButtonProps, {}> {
@@ -29,7 +30,7 @@ export class Button extends React.Component<ButtonProps, {}> {
     });
 
     return (
-      <button className={classes} onClick={ this.props.onClick }>
+      <button className={classes} onClick={ this.props.onClick } title={ this.props.title }>
         { this.props.icon && <div className="button__icon">{ this.props.icon }</div> }
         { this.props.text && <div className="button__text">{ this.props.text }</div> }
       </button>
