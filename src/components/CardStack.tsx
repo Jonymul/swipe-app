@@ -63,7 +63,15 @@ export class CardStack extends React.Component<CardStackProps, CardStackState> {
 
     return (
       <div className={classes}>
-        { this.state.profileQueue.slice(0,2).map((profile, index) => <ProfileCard key={`profilecard-${ profile.id }`} active={index === 0} className={`card-stack__card card-stack__card--index${index}`} profile={profile} onReject={ this.onCardReject.bind(this, [profile.id]) } onLike={ this.onCardLike.bind(this, [profile.id]) } />) }
+        { this.state.profileQueue.slice(0,2).map((profile, index) =>
+          <ProfileCard
+            key={`profilecard-${ profile.id }`}
+            active={index === 0}
+            className={`card-stack__card card-stack__card--index${index}`}
+            profile={profile}
+            onReject={ this.onCardReject.bind(this, [profile.id]) }
+            onLike={ this.onCardLike.bind(this, [profile.id]) } />
+        ) }
       </div>
     );
   }
